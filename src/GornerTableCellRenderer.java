@@ -17,34 +17,38 @@ public class GornerTableCellRenderer implements TableCellRenderer {
     private DecimalFormat formatter = (DecimalFormat)NumberFormat.getInstance();
 
     public GornerTableCellRenderer() {
+
         formatter.setMaximumFractionDigits(5);
         formatter.setGroupingUsed(false);
         DecimalFormatSymbols dottedDouble = formatter.getDecimalFormatSymbols();
         dottedDouble.setDecimalSeparator('.');
         formatter.setDecimalFormatSymbols(dottedDouble);
-
         panel.add(label);
         panel.setLayout(new FlowLayout(FlowLayout.LEFT));
-
     }
 
     public Component getTableCellRendererComponent(JTable table,
                                                    Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+
+        panel.setLayout(new FlowLayout(FlowLayout.LEFT));
         if(col == 2){
+
             label.setText(String.valueOf(value));
+
+            //if(String.valueOf(value) == "true"){
+                panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+            //}
+
             panel.setBackground(Color.white);
             return panel;
         }
+
         String formattedDouble = formatter.format(value);
         label.setText(formattedDouble);
 
-
-
-
-        if (col == 1 && needle!=null && needle.equals(formattedDouble)) {
+        if (col == 1 && needle != null && needle.equals(formattedDouble)) {
             panel.setBackground(Color.RED);
         } else {
-
             panel.setBackground(Color.white);
 
             double num = Double.valueOf(label.getText());

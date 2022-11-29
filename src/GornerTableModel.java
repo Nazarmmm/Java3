@@ -25,6 +25,7 @@ public class GornerTableModel extends AbstractTableModel {
         return step;
     }
     public int getColumnCount() {
+        //сли захочешь больше клонок
         return 3;
     }
     public int getRowCount() {
@@ -59,8 +60,6 @@ public class GornerTableModel extends AbstractTableModel {
                 return Boolean.valueOf(prime);
             }
         }
-
-        //TODO: Realaze Gorgner scheam
 
         return result;
     }

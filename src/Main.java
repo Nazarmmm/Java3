@@ -15,14 +15,10 @@ class MainFrame extends JFrame {
     private JMenuItem saveToTextMenuItem;
     private JMenuItem saveToGraphicsMenuItem;
     private JMenuItem searchValueMenuItem;
-
-
-
     private JMenuItem getInfoAboutAuther;
     private JTextField textFieldFrom;
     private JTextField textFieldTo;
     private JTextField textFieldStep;
-
     private Box hBoxResult;
     private GornerTableCellRenderer renderer = new GornerTableCellRenderer();
     private GornerTableModel data;
@@ -56,14 +52,14 @@ class MainFrame extends JFrame {
         };
         saveToTextMenuItem = fileMenu.add(saveToTextAction);
         saveToTextMenuItem.setEnabled(false);
-        Action saveToGraphicsAction = new AbstractAction("Save data to create grapics") {
+        Action saveToGraphicsAction = new AbstractAction("Save data to create graphics") {
             public void actionPerformed(ActionEvent event) {
                 if (fileChooser == null) {
                     fileChooser = new JFileChooser();
                     fileChooser.setCurrentDirectory(new File("."));
                 }
                 if (fileChooser.showSaveDialog(MainFrame.this) ==
-                        JFileChooser.APPROVE_OPTION) ;
+                        JFileChooser.APPROVE_OPTION);
                 saveToGraphicsFile(fileChooser.getSelectedFile());
             }
         };
@@ -71,7 +67,7 @@ class MainFrame extends JFrame {
         saveToGraphicsMenuItem = fileMenu.add(saveToGraphicsAction);
         saveToGraphicsMenuItem.setEnabled(false);
 
-        Action searchValueAction = new AbstractAction("Find polinamial value") {
+        Action searchValueAction = new AbstractAction("Find polynomial value") {
             public void actionPerformed(ActionEvent event) {
                 String value =
                         JOptionPane.showInputDialog(MainFrame.this, "Enter fiend value",
@@ -85,10 +81,10 @@ class MainFrame extends JFrame {
         searchValueMenuItem = tableMenu.add(searchValueAction);
         searchValueMenuItem.setEnabled(false);
 
-        Action GetInfo = new AbstractAction("About auther") {
+        Action GetInfo = new AbstractAction("About author") {
             public void actionPerformed(ActionEvent event) {
-                JOptionPane.showMessageDialog(null,"Mazar, Nozol, groop 9", "Auther",
-                        JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Nazar Mozol, group 9", "Author",
+                        JOptionPane.QUESTION_MESSAGE);
             }
         };
 
@@ -110,11 +106,11 @@ class MainFrame extends JFrame {
         hboxRange.add(labelForFrom);
         hboxRange.add(Box.createHorizontalStrut(10));
         hboxRange.add(textFieldFrom);
-        hboxRange.add(Box.createHorizontalStrut(20));
+        hboxRange.add(Box.createHorizontalGlue());
         hboxRange.add(labelForTo);
         hboxRange.add(Box.createHorizontalStrut(10));
         hboxRange.add(textFieldTo);
-        hboxRange.add(Box.createHorizontalStrut(20));
+        hboxRange.add(Box.createHorizontalGlue());
         hboxRange.add(labelForStep);
         hboxRange.add(Box.createHorizontalStrut(10));
         hboxRange.add(textFieldStep);
@@ -129,7 +125,6 @@ class MainFrame extends JFrame {
         buttonCalc.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 try {
-
                     Double from = Double.parseDouble(textFieldFrom.getText());
                     Double to = Double.parseDouble(textFieldTo.getText());
                     Double step = Double.parseDouble(textFieldStep.getText());
@@ -145,7 +140,7 @@ class MainFrame extends JFrame {
                     searchValueMenuItem.setEnabled(true);
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(MainFrame.this,
-                            "Error folatin num enering", "Error numer format",
+                            "Error folatin num entering", "Error number format",
                             JOptionPane.WARNING_MESSAGE);
                 }
             }
@@ -212,7 +207,7 @@ class MainFrame extends JFrame {
             for (int i = 0; i < data.getRowCount(); i++) {
                 out.println("Val in the spot " + data.getValueAt(i, 0)
                         + " equael " + data.getValueAt(i, 1) +
-                        " reverse value: " + data.getValueAt(i, 2));
+                        " is primal: " + data.getValueAt(i, 2));
             }
 
             out.close();
@@ -222,7 +217,7 @@ class MainFrame extends JFrame {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Try to add some coeffitients in the args[]!");
+            System.out.println("Try to add some coefficients in the args[]!");
             System.exit(-1);
         }
         Double[] coefficients = new Double[args.length];
